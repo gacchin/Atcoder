@@ -1,8 +1,12 @@
-### 解法
-1. 接頭語と接尾語を判定する
-2. 接頭語となる条件はsのi番目（0~n）までの文字とtのi番目（0~n）の文字が全て一致すること
+### 解法１
+forループで文字列の各文字を比較する
+
+### 解法2
+比較用の文字列をstringで作成し比較する
+
 
 ``` cpp
+// 公式解法
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -34,6 +38,35 @@ int main(){
     solve();
     return 0;
 }
+
+```
+
+``` cpp
+// 個人回答
+int n,m;
+string s,t;
+cin >> n >> m;
+cin >> s >> t;
+
+bool is_prefix = 0;
+bool is_sufix = 0;
+// prefix
+string s_prefix = t.substr(0,n); 
+if(s_prefix == s) is_prefix = true;
+
+// suffix
+string s_sufix = t.substr(m - s.size(),n); 
+if(s_sufix == s) is_sufix = true;
+
+int ans = 0;
+if(is_prefix && is_sufix) ans = 0;
+else if(is_prefix && !is_sufix) ans = 1;
+else if(!is_prefix && is_sufix) ans = 2;
+else if(!is_prefix && !is_sufix) ans = 3;
+
+cout << ans << endl;
+
+return;
 
 ```
 
